@@ -35,6 +35,13 @@ jobs:
           git clone --depth=1 https://github.com/kdrag0n/proton-clang -b master
           git clone --depth=1 https://github.com/alk3p/AnyKernel3 -b master
           mv AnyKernel3 anykernel
+          cd anykernel
+          rm -rf modules
+          rm -rf patch
+          rm -rf ramdisk
+          rm -rf README.md
+          rm -rf anykernel.sh
+          wget https://gist.githubusercontent.com/ckn4/e5a7864f344d481d7c0337c845a2bdc9/raw/anykernel.sh
           echo "拉取buildtools完成"
           cd
       - name: build with build.sh
