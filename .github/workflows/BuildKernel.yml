@@ -1,8 +1,6 @@
 name: BuildKernel
 
 on:
-  release:
-    types: [published]
   push:
     branches:
       - main
