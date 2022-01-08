@@ -25,7 +25,7 @@ jobs:
       - name: pull
         run: |
           echo "拉取源码和拉取buildtools"
-          git clone --depth=1 https://github.com/alk3p/android_kernel_xiaomi_sm8250 -b apollo-q-oss
+          git clone --depth=1 https://github.com/alk3p/android_kernel_xiaomi_sm8250 -b apollo-q-oss-dev
           echo "拉取源码完成"
           mv android_kernel_xiaomi_sm8250 kernel_apollo
           mkdir build-tools
