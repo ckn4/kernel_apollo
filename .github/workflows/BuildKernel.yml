@@ -25,21 +25,14 @@ jobs:
       - name: pull
         run: |
           echo "拉取源码和拉取buildtools"
-          git clone --depth=1 https://github.com/ckn4/android_kernel_xiaomi_sm8250 -b apollo-q-oss-dev-test
+          git clone --depth=1 https://github.com/alk3p/android_kernel_xiaomi_sm8250 -b apollo-q-oss
           echo "拉取源码完成"
           mv android_kernel_xiaomi_sm8250 kernel_apollo
           mkdir build-tools
           cd build-tools
           git clone --depth=1 https://github.com/kdrag0n/proton-clang -b master
-          git clone --depth=1 https://github.com/alk3p/AnyKernel3 -b master
+          git clone --depth=1 https://github.com/alk3p/AnyKernel3 -b apollo
           mv AnyKernel3 anykernel
-          cd anykernel
-          rm -rf modules
-          rm -rf patch
-          rm -rf ramdisk
-          rm -rf README.md
-          rm -rf anykernel.sh
-          wget https://gist.githubusercontent.com/ckn4/e5a7864f344d481d7c0337c845a2bdc9/raw/anykernel.sh
           echo "拉取buildtools完成"
           cd
       - name: build with build.sh
@@ -49,12 +42,6 @@ jobs:
           wget https://raw.githubusercontent.com/alk3p/build-scripts/apollo/build.sh
           chmod +x build.sh
           ./build.sh
-      - name : upload kernel
-        uses: actions/upload-artifact@master
-        if: always()
-        with:
-          name: kernel
-          path: ${{ github.workspace }}/kernel_apollo/arch/arm64/boot/Image.gz
       - name : upload zip
         uses: actions/upload-artifact@master
         if: always()
